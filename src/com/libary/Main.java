@@ -1,6 +1,7 @@
 package com.libary;
 
 import com.libary.metier.Bibliotheque;
+import com.libary.metier.Document;
 import com.libary.metier.Livre;
 import com.libary.metier.Magazine;
 import com.libary.presentation.ConsoleUI;
@@ -38,8 +39,58 @@ public class Main {
                     for (Magazine magazine : bibliotheque.getMagazines()) {
                         magazine.afficherDetails();
                     }
-                   // System.out.println(bibliotheque.getMagazines());
                 }
+                break;
+
+
+            case 2:
+                System.out.println("Which Document Do You Want To Borrow?");
+                bibliotheque.afficherTousLesDocuments();
+
+                System.out.println("Enter the ID of the document you want to borrow:");
+                String documentId = scanner.next();
+                if (bibliotheque.emprunterDocumentParId(documentId)) {
+                    System.out.println("Document borrowed successfully.");
+                } else {
+                    System.out.println("Document with ID " + documentId + " not found or already borrowed.");
+                }
+                break;
+
+            case 3:
+                System.out.println("Which Document Do You Want To Return?");
+                bibliotheque.afficherDocumentsEmpruntes();
+
+                System.out.println("Enter the ID of the document you want to return:");
+                String returnId = scanner.next();
+
+                if (bibliotheque.retournerDocumentParId(returnId)) {
+                    System.out.println("Document returned successfully.");
+                } else {
+                    System.out.println("Document with ID " + returnId + " not found in borrowed list.");
+                }
+                break;
+
+            case 4:
+                System.out.println("Display all documents:");
+                bibliotheque.afficherTousLesDocuments();
+                break;
+
+            case 5:
+                // recherche dun doc
+                break;
+
+            case 6:
+                System.out.println("Displaying Borrowed Documents:");
+                bibliotheque.afficherDocumentsEmpruntes();
+                break;
+
+            case 7:
+                System.out.println("Exiting program.");
+                System.exit(0);
+                break;
+
+            default:
+                System.out.println("Invalid option.");
                 break;
 
         }

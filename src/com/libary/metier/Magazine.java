@@ -26,7 +26,7 @@ public class Magazine extends Document {
 
     @Override
     public void afficherDetails() {
-        System.out.println("Livre: " + titre + ", Auteur: " + auteur + ", ISBN: " + isbn);
+        System.out.println("Magazine [ID: " + id + ", Titre: " + titre + ", Auteur: " + auteur + ", Date de Publication: " + datePublication + ", Nombre de Pages: " + nombreDePages + ", ISBN: " + isbn + "]");
     }
 }
 

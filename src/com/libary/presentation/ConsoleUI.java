@@ -7,6 +7,7 @@ public class ConsoleUI {
         System.out.println("3. Retourner un document");
         System.out.println("4. Afficher tous les documents");
         System.out.println("5. Rechercher un document");
-        System.out.println("6. Quitter");
+        System.out.println("6. Afficher La liste des Documents Reservés");
+        System.out.println("7. Quitter");
     }
 }

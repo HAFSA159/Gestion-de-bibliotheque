@@ -12,5 +12,12 @@ public abstract class Document {
     public abstract void emprunter();
     public abstract void retourner();
     public abstract void afficherDetails();
+
+    public String getTitre() {
+        return titre;
+    }
+    public String getId() {
+        return id;
+    }
 }
 
