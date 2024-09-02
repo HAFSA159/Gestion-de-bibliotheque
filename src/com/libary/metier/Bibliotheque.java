@@ -59,10 +59,9 @@ public class Bibliotheque {
     }
 
     public boolean emprunterDocumentParId(String id) {
-        for (int i = 0; i < documents.size(); i++) {
-            Document doc = documents.get(i);
+        for (Document doc : documents) {
             if (doc.getId().equals(id)) {
-                documents.remove(i);
+                documents.remove(doc);
                 borrowedDocuments.add(doc);
                 return true;
             }
@@ -86,7 +85,6 @@ public class Bibliotheque {
         if (borrowedDocuments.isEmpty()) {
             System.out.println("No documents have been borrowed.");
         } else {
-            System.out.println("Borrowed Documents:");
             for (Document doc : borrowedDocuments) {
                 doc.afficherDetails();
             }
