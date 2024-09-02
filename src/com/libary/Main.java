@@ -6,6 +6,7 @@ import com.libary.metier.Livre;
 import com.libary.metier.Magazine;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -24,35 +25,51 @@ public class Main {
             System.out.println("7. Exit");
 
             int userOption = scanner.nextInt();
-            scanner.nextLine(); // Consume newline left-over
+            scanner.nextLine();
 
             switch (userOption) {
+                // Add a Doc
                 case 1:
                     ajouterDocument(scanner, bibliotheque);
                     break;
-
+                // Borrow A Book
                 case 2:
                     emprunterDocument(scanner, bibliotheque);
                     break;
 
+                // Return A Book
                 case 3:
                     retournerDocument(scanner, bibliotheque);
                     break;
 
+                // Display All The Books
                 case 4:
                     System.out.println("Displaying all documents:");
                     bibliotheque.afficherTousLesDocuments();
                     break;
 
+
+                //doc search
                 case 5:
-                    // Implement document search functionality
+                    //scanner.nextLine();
+                    System.out.print("Enter the title to search: ");
+                    String title = scanner.nextLine();
+                    Document resultByTitle = bibliotheque.chercherParTitre(title);
+                    if (resultByTitle != null) {
+                        System.out.println("Document found with the title: " + title);
+                        resultByTitle.afficherDetails();
+                    } else {
+                        System.out.println("No document found with the title: " + title);
+                    }
                     break;
 
+                // Display Borrowed Books
                 case 6:
                     System.out.println("Displaying borrowed documents:");
                     bibliotheque.afficherDocumentsEmpruntes();
                     break;
 
+                // Exit The Program
                 case 7:
                     System.out.println("Exiting program.");
                     scanner.close();
@@ -71,7 +88,7 @@ public class Main {
         System.out.println("1. Livre");
         System.out.println("2. Magazine");
         int userChoice = scanner.nextInt();
-        scanner.nextLine(); // Consume newline left-over
+        scanner.nextLine();
 
         if (userChoice == 1) {
             System.out.println("Enter details for Livre:");

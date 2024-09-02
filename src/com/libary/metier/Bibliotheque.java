@@ -1,17 +1,18 @@
 package com.libary.metier;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Bibliotheque {
     private List<Document> documents;
     private List<Document> borrowedDocuments;
+    private HashMap<String, Document> titleMap;
     private int idCounter = 1;
 
     public Bibliotheque() {
         this.documents = new ArrayList<>();
         this.borrowedDocuments = new ArrayList<>();
+        this.titleMap = new HashMap<>();
     }
 
     public List<Document> getDocuments() {
@@ -19,33 +20,15 @@ public class Bibliotheque {
     }
 
     public void ajouterLivre(String titre, String auteur, LocalDate datePublication, int nombreDePages, String isbn) {
-        Livre livre = new Livre(generateId(), titre, auteur, datePublication, nombreDePages, isbn);
+        Livre livre = new Livre(String.valueOf(generateId()), titre, auteur, datePublication, nombreDePages, isbn);
         documents.add(livre);
+        titleMap.put(titre.toLowerCase(), livre); // Add to title map
     }
 
     public void ajouterMagazine(String titre, String auteur, LocalDate datePublication, int nombreDePages, String numero) {
-        Magazine magazine = new Magazine(generateId(), titre, auteur, datePublication, nombreDePages, numero);
+        Magazine magazine = new Magazine(String.valueOf(generateId()), titre, auteur, datePublication, nombreDePages, numero);
         documents.add(magazine);
-    }
-
-    public List<Livre> getLivres() {
-        List<Livre> livres = new ArrayList<>();
-        for (Document doc : documents) {
-            if (doc instanceof Livre) {
-                livres.add((Livre) doc);
-            }
-        }
-        return livres;
-    }
-
-    public List<Magazine> getMagazines() {
-        List<Magazine> magazines = new ArrayList<>();
-        for (Document doc : documents) {
-            if (doc instanceof Magazine) {
-                magazines.add((Magazine) doc);
-            }
-        }
-        return magazines;
+        titleMap.put(titre.toLowerCase(), magazine); // Add to title map
     }
 
     public void afficherTousLesDocuments() {
@@ -73,6 +56,10 @@ public class Bibliotheque {
             }
         }
         return false;
+    }
+
+    public Document chercherParTitre(String titre) {
+        return titleMap.get(titre.toLowerCase());
     }
 
     public boolean retournerDocumentParId(String id) {
