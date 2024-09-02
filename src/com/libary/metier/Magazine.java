@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public class Magazine extends Document {
     private String isbn;
 
-    public Magazine(String id, String titre, String auteur, LocalDate datePublication, int nombreDePages, String isbn) {
-        this.id = id;
+    public Magazine(int id, String titre, String auteur, LocalDate datePublication, int nombreDePages, String isbn) {
+        this.id = String.valueOf(id);
         this.titre = titre;
         this.auteur = auteur;
         this.datePublication = datePublication;

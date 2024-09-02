@@ -5,21 +5,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bibliotheque {
-    private ArrayList<Document> documents;
-    private ArrayList<Document> borrowedDocuments;  // Consistent naming
+    private List<Document> documents;
+    private List<Document> borrowedDocuments;
+    private int idCounter = 1;
 
     public Bibliotheque() {
         this.documents = new ArrayList<>();
         this.borrowedDocuments = new ArrayList<>();
     }
 
-    public void ajouterLivre(String id, String titre, String auteur, LocalDate datePublication, int nombreDePages, String isbn) {
-        Livre livre = new Livre(id, titre, auteur, datePublication, nombreDePages, isbn);
+    public List<Document> getDocuments() {
+        return new ArrayList<>(documents);
+    }
+
+    public void ajouterLivre(String titre, String auteur, LocalDate datePublication, int nombreDePages, String isbn) {
+        Livre livre = new Livre(generateId(), titre, auteur, datePublication, nombreDePages, isbn);
         documents.add(livre);
     }
 
-    public void ajouterMagazine(String id, String titre, String auteur, LocalDate datePublication, int nombreDePages, String numero) {
-        Magazine magazine = new Magazine(id, titre, auteur, datePublication, nombreDePages, numero);
+    public void ajouterMagazine(String titre, String auteur, LocalDate datePublication, int nombreDePages, String numero) {
+        Magazine magazine = new Magazine(generateId(), titre, auteur, datePublication, nombreDePages, numero);
         documents.add(magazine);
     }
 
@@ -49,13 +54,14 @@ public class Bibliotheque {
         }
     }
 
-
-    public ArrayList<Document> getDocuments() {
-        return documents;
-    }
-
-    public ArrayList<Document> getBorrowedDocuments() {
-        return borrowedDocuments;
+    public void afficherDocumentsEmpruntes() {
+        if (borrowedDocuments.isEmpty()) {
+            System.out.println("No documents have been borrowed.");
+        } else {
+            for (Document doc : borrowedDocuments) {
+                doc.afficherDetails();
+            }
+        }
     }
 
     public boolean emprunterDocumentParId(String id) {
@@ -81,13 +87,7 @@ public class Bibliotheque {
         return false;
     }
 
-    public void afficherDocumentsEmpruntes() {
-        if (borrowedDocuments.isEmpty()) {
-            System.out.println("No documents have been borrowed.");
-        } else {
-            for (Document doc : borrowedDocuments) {
-                doc.afficherDetails();
-            }
-        }
+    private int generateId() {
+        return idCounter++;
     }
 }
