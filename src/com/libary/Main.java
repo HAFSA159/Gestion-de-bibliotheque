@@ -4,6 +4,8 @@ import com.libary.metier.Bibliotheque;
 import com.libary.metier.Document;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Main {
@@ -46,7 +48,7 @@ public class Main {
                     break;
 
 
-                //doc search
+                // To Search A Doc
                 case 5:
                     System.out.print("Enter the title to search: ");
                     String title = scanner.nextLine();
@@ -92,7 +94,8 @@ public class Main {
             String titre = scanner.nextLine();
             System.out.print("Author: ");
             String auteur = scanner.nextLine();
-            LocalDate datePublication = LocalDate.now();
+            System.out.print("Publication Date (yyyy-mm-dd): ");
+            LocalDate datePublication = readDate(scanner);
             System.out.print("Number of Pages: ");
             int nombreDePages = scanner.nextInt();
             scanner.nextLine();
@@ -108,7 +111,8 @@ public class Main {
             String titre = scanner.nextLine();
             System.out.print("Author: ");
             String auteur = scanner.nextLine();
-            LocalDate datePublication = LocalDate.now();
+            System.out.print("Publication Date (yyyy-mm-dd): ");
+            LocalDate datePublication = readDate(scanner);
             System.out.print("Number of Pages: ");
             int nombreDePages = scanner.nextInt();
             scanner.nextLine();
@@ -150,6 +154,17 @@ public class Main {
             System.out.println("Document returned successfully.");
         } else {
             System.out.println("Document with ID " + returnId + " not found in borrowed list.");
+        }
+    }
+
+    private static LocalDate readDate(Scanner scanner) {
+        while (true) {
+            try {
+                String dateInput = scanner.nextLine();
+                return LocalDate.parse(dateInput, DateTimeFormatter .ISO_LOCAL_DATE);
+            } catch (DateTimeParseException e) {
+                System.out.print("Invalid date format. Please enter the date in yyyy-mm-dd format: ");
+            }
         }
     }
 }

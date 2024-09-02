@@ -22,13 +22,13 @@ public class Bibliotheque {
     public void ajouterLivre(String titre, String auteur, LocalDate datePublication, int nombreDePages, String isbn) {
         Livre livre = new Livre(String.valueOf(generateId()), titre, auteur, datePublication, nombreDePages, isbn);
         documents.add(livre);
-        titleMap.put(titre.toLowerCase(), livre); // Add to title map
+        titleMap.put(titre.toLowerCase(), livre);
     }
 
     public void ajouterMagazine(String titre, String auteur, LocalDate datePublication, int nombreDePages, String numero) {
         Magazine magazine = new Magazine(String.valueOf(generateId()), titre, auteur, datePublication, nombreDePages, numero);
         documents.add(magazine);
-        titleMap.put(titre.toLowerCase(), magazine); // Add to title map
+        titleMap.put(titre.toLowerCase(), magazine);
     }
 
     public void afficherTousLesDocuments() {
