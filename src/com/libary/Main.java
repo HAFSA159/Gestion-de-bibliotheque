@@ -2,11 +2,8 @@ package com.libary;
 
 import com.libary.metier.Bibliotheque;
 import com.libary.metier.Document;
-import com.libary.metier.Livre;
-import com.libary.metier.Magazine;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -28,21 +25,21 @@ public class Main {
             scanner.nextLine();
 
             switch (userOption) {
-                // Add a Doc
+                // To Add a Doc
                 case 1:
                     ajouterDocument(scanner, bibliotheque);
                     break;
-                // Borrow A Book
+                // To Borrow A Book
                 case 2:
                     emprunterDocument(scanner, bibliotheque);
                     break;
 
-                // Return A Book
+                // TO Return A Book
                 case 3:
                     retournerDocument(scanner, bibliotheque);
                     break;
 
-                // Display All The Books
+                // To Display All The Books
                 case 4:
                     System.out.println("Displaying all documents:");
                     bibliotheque.afficherTousLesDocuments();
@@ -51,7 +48,6 @@ public class Main {
 
                 //doc search
                 case 5:
-                    //scanner.nextLine();
                     System.out.print("Enter the title to search: ");
                     String title = scanner.nextLine();
                     Document resultByTitle = bibliotheque.chercherParTitre(title);
