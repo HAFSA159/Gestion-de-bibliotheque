@@ -2,6 +2,7 @@ package com.libary;
 
 import com.libary.metier.Bibliotheque;
 import com.libary.metier.Document;
+import com.libary.presentation.ConsoleUI;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -11,17 +12,11 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Bibliotheque bibliotheque = new Bibliotheque();
+        ConsoleUI consoleUI = new ConsoleUI();
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Choose an Option:");
-            System.out.println("1. Add Document");
-            System.out.println("2. Borrow Document");
-            System.out.println("3. Return Document");
-            System.out.println("4. Display All Documents");
-            System.out.println("5. Search Document");
-            System.out.println("6. Display Borrowed Documents");
-            System.out.println("7. Exit");
+            consoleUI.Menu();
 
             int userOption = scanner.nextInt();
             scanner.nextLine();
@@ -104,6 +99,7 @@ public class Main {
 
             bibliotheque.ajouterLivre(titre, auteur, datePublication, nombreDePages, isbn);
             System.out.println("Livre added successfully!");
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
         } else if (userChoice == 2) {
             System.out.println("Enter details for Magazine:");
@@ -121,15 +117,18 @@ public class Main {
 
             bibliotheque.ajouterMagazine(titre, auteur, datePublication, nombreDePages, numero);
             System.out.println("Magazine added successfully!");
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
         } else {
             System.out.println("Invalid choice. Please choose again.");
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
     }
 
     private static void emprunterDocument(Scanner scanner, Bibliotheque bibliotheque) {
         if (bibliotheque.getDocuments().isEmpty()) {
             System.out.println("No documents are available to borrow.");
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             return;
         }
         System.out.println("Which document do you want to borrow?");
@@ -139,8 +138,10 @@ public class Main {
 
         if (bibliotheque.emprunterDocumentParId(documentId)) {
             System.out.println("Document borrowed successfully.");
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         } else {
             System.out.println("Document with ID " + documentId + " not found or already borrowed.");
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
     }
 
@@ -152,8 +153,10 @@ public class Main {
 
         if (bibliotheque.retournerDocumentParId(returnId)) {
             System.out.println("Document returned successfully.");
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         } else {
             System.out.println("Document with ID " + returnId + " not found in borrowed list.");
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
     }
 

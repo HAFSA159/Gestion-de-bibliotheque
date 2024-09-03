@@ -1,5 +1,6 @@
 package com.libary.presentation;
 
+
 public class ConsoleUI {
     public void Menu() {
         System.out.println("1. Ajouter un document");
@@ -9,5 +10,6 @@ public class ConsoleUI {
         System.out.println("5. Rechercher un document");
         System.out.println("6. Afficher La liste des Documents Reservés");
         System.out.println("7. Quitter");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 }
