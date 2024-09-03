@@ -1,11 +1,11 @@
 package com.libary;
 
+import com.libary.utilitaire.DateUtils;
 import com.libary.metier.Bibliotheque;
 import com.libary.metier.Document;
 import com.libary.presentation.ConsoleUI;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
@@ -31,7 +31,7 @@ public class Main {
                     emprunterDocument(scanner, bibliotheque);
                     break;
 
-                // TO Return A Book
+                // To Return A Book
                 case 3:
                     retournerDocument(scanner, bibliotheque);
                     break;
@@ -41,7 +41,6 @@ public class Main {
                     System.out.println("Displaying all documents:");
                     bibliotheque.afficherTousLesDocuments();
                     break;
-
 
                 // To Search A Doc
                 case 5:
@@ -164,7 +163,7 @@ public class Main {
         while (true) {
             try {
                 String dateInput = scanner.nextLine();
-                return LocalDate.parse(dateInput, DateTimeFormatter .ISO_LOCAL_DATE);
+                return DateUtils.stringToDate(dateInput);
             } catch (DateTimeParseException e) {
                 System.out.print("Invalid date format. Please enter the date in yyyy-mm-dd format: ");
             }
